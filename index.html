@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pong</title>
+    <script src="./index.js"></script>
+    <style>
+        body, html {
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            max-height: 100vh;
+            min-height: 100vh;
+            overflow: hidden;
+            background-color: aquamarine;
+            display: flex;
+            justify-content: center;
+        }
+        canvas {
+            background-color: white;
+        }
+        .left, .right {
+            background-color: aquamarine;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: calc(50vw - 50vh)
+        }
+        .left {
+            left: 0;
+        }
+        .right {
+            right: 0;
+        }
+        .score {
+            font-size: 150px;
+        }
+
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+    <div class="left">
+        <select id="p1">
+            <option value="chaser">Chaser</option>
+            <option value="nn">Neural network</option>
+            <option value="human">Human (Controls: W/S)</option>
+        </select>
+        <select id="id1"></select>
+        <div class="score" id="score1">0</div>
+        <button>Reset scores</button>
+    </div>
+    <div class="right">
+        <select id="p2">
+            <option value="chaser">Chaser</option>
+            <option value="nn">Neural network</option>
+            <option value="human">Human (Controls: ↑/↓)</option>
+        </select>
+        <select id="id2"></select>
+        <div class="score" id="score2">0</div>
+    </div>
+</body>
+</html>
