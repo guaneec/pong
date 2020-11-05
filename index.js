@@ -47,6 +47,18 @@ function mirrorMod(a, b) {
     return c < b ? [c, 1] : [2 * b - c, -1];
 }
 
+class NNViz {
+    constructor(elem) {
+        this.elem = elem;
+    }
+
+    read(values) {
+        this.elem.innerHTML = values.map(layer => '<div class="layer">' + layer.map(cell => `<div class="cell" style="opacity: ${0.1 + 0.9 * cell};"></div>`).join('') + '</div>').join('');
+    }
+}
+
+let nnvizs;
+
 class Matrix {
     constructor(data, l1, l2) {
         if (l1 * l2 != data.length) throw new Error('wrong dimensions');
@@ -61,6 +73,14 @@ class Matrix {
 
     activate() {
         this.data = this.data.map(x => Math.tanh(x));
+    }
+
+    softmax() {
+        const d = Math.max(...this.data);
+        this.data.forEach((_v, i, a) => a[i] -= d);
+        this.data = this.data.map(Math.exp);
+        const s = this.data.reduce((a, b) => a + b, 0);
+        this.data = this.data.map(x => x / s);
     }
 }
 
@@ -194,11 +214,20 @@ class NNPolicy extends Policy {
     }
     getAction(state) {
         let y = state.matrix(this.side);
+        const values = []
         for (let i = 0; i < this.ws.length; ++i) {
             y = matmul(y, this.ws[i]);
             y = matadd(y, this.bs[i]);
-            y.activate();
+            if (i !== this.ws.length - 1) {
+                y.activate();
+                values.push(y.data.map(x => x * 0.5 + 0.5));
+            }
+            else {
+                y.softmax();
+                values.push([...y.data]);
+            }
         }
+        nnvizs[this.side - 1].read(values);
         return argmax(y.data);
     }
 }
@@ -275,6 +304,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 player1 = new HumanPolicy(1);
                 break;
         }
+        document.getElementById('nn1').innerHTML = '';
     }
     const setP2 = () => {
         switch (sel2.value) {
@@ -288,6 +318,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 player2 = new HumanPolicy(2);
                 break;
         }
+        document.getElementById('nn2').innerHTML = '';
     }
     setP1();
     setP2();
@@ -298,5 +329,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelector('button').addEventListener('click', () => {
         document.querySelectorAll('.score').forEach(el => el.innerHTML = '0');
     });
+    nnvizs = [new NNViz(document.getElementById('nn1')), new NNViz(document.getElementById('nn2'))];
     runGame(ctx);
 })

@@ -38,6 +38,25 @@
             font-size: 150px;
         }
 
+        .nn {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        #nn2 {
+            flex-direction: row-reverse;
+        }
+
+        .nn .cell {
+            width: 30px;
+            height: 30px;
+            background-color: teal;
+            border-radius: 50%;
+            margin: 6px;
+        }
+
     </style>
 </head>
 <body>
@@ -51,6 +70,8 @@
         <select id="id1"></select>
         <div class="score" id="score1">0</div>
         <button>Reset scores</button>
+        <div id="nn1" class="nn">
+        </div>
     </div>
     <div class="right">
         <select id="p2">
@@ -60,6 +81,7 @@
         </select>
         <select id="id2"></select>
         <div class="score" id="score2">0</div>
+        <div id="nn2" class="nn"></div>
     </div>
 </body>
 </html>
