@@ -19,8 +19,8 @@ const actions = {
 }
 
 function resizeCanvas(canvas) {
-    const w = canvas.parentElement.clientWidth;
-    const h = canvas.parentElement.clientHeight;
+    const w = canvas.parentElement.parentElement.clientWidth;
+    const h = canvas.parentElement.parentElement.clientHeight;
     canvas.height = canvas.width = Math.min(w, h);
 }
 
@@ -329,7 +329,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     idSel1.addEventListener('change', setP1);
     idSel2.addEventListener('change', setP2);
     document.querySelector('button').addEventListener('click', () => {
-        document.querySelectorAll('.score').forEach(el => el.innerHTML = '0');
+        document.querySelectorAll('#score1, #score2').forEach(el => el.innerHTML = '0');
     });
     nnvizs = [new NNViz(document.getElementById('nn1')), new NNViz(document.getElementById('nn2'))];
     runGame(ctx);

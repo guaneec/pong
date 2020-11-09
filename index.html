@@ -36,6 +36,17 @@
         }
         .score {
             font-size: 150px;
+            color: #2223;
+        }
+
+        #score1, #score2 {
+            flex-grow: 1;
+            padding-right: 40px;
+            padding-left: 50px;
+        }
+        #score1 {
+            text-align: right;
+
         }
 
         .nn {
@@ -57,10 +68,42 @@
             margin: 6px;
         }
 
+        .canvas-wrp {
+            position: relative;
+        }
+
+        .center-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .bar {
+            display: flex;
+            justify-content: center;
+        }
+
+        button {
+            opacity: 0.5;
+        }
+
     </style>
 </head>
 <body>
-    <canvas></canvas>
+    <div class="canvas-wrp">
+        <div class="center-bar">
+            <div class="bar score">
+                <div id="score1">0</div>   
+                <div id="score2">0</div>
+            </div>
+            <div class="bar">
+                <button style="font-size: 24px">歸零</button>
+            </div>
+        </div>
+        <canvas></canvas>
+    </div>
     <div class="left">
         <select id="p1">
             <option value="chaser">Chaser</option>
@@ -68,8 +111,7 @@
             <option value="human">Human (Controls: W/S)</option>
         </select>
         <select id="id1"></select>
-        <div class="score" id="score1">0</div>
-        <button>Reset scores</button>
+             
         <div id="nn1" class="nn">
         </div>
     </div>
@@ -80,7 +122,7 @@
             <option value="human">Human (Controls: ↑/↓)</option>
         </select>
         <select id="id2"></select>
-        <div class="score" id="score2">0</div>
+        
         <div id="nn2" class="nn"></div>
     </div>
 </body>
