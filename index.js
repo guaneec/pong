@@ -305,6 +305,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 break;
         }
         document.getElementById('nn1').innerHTML = '';
+        idSel1.style.display = sel1.value === 'nn' ? '' : 'none';
     }
     const setP2 = () => {
         switch (sel2.value) {
@@ -319,6 +320,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 break;
         }
         document.getElementById('nn2').innerHTML = '';
+        idSel2.style.display = sel2.value === 'nn' ? '' : 'none';
     }
     setP1();
     setP2();
