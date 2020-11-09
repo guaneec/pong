@@ -98,6 +98,10 @@
             justify-content: center;
         }
 
+        .nn-info {
+            font-size: 12px;
+        }
+
         button {
             opacity: 0.5;
         }
@@ -126,8 +130,12 @@
         </select>
         <select id="id1"></select>
              
-        <div id="nn1" class="nn">
-        </div>
+        <div id="nn1" class="nn"></div>
+        <p class="nn-info" id="info1">
+            AI 內部即時狀況<br />
+            圓圈顏色深度表示神經元活化強度 <br />
+            最內側三個圓圈為輸出 (上/不動/下)
+        </p>
     </div>
     <div class="right">
         <label for="p2">Player 2:</label>
@@ -138,6 +146,11 @@
         </select>
         <select id="id2"></select>
         
+        <p class="nn-info" id="info2">
+            AI 內部即時狀況<br />
+            圓圈顏色深度表示神經元活化強度 <br />
+            最內側三個圓圈為輸出 (上/不動/下)
+        </p>
         <div id="nn2" class="nn"></div>
     </div>
 </body>
