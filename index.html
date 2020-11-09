@@ -10,6 +10,9 @@
             padding: 0;
             margin: 0;
         }
+        * {
+            font-family: "SF Pro TC","SF Pro Text","SF Pro Icons","PingFang TC","Helvetica Neue","Helvetica","Arial",sans-serif;
+        }
         body {
             max-height: 100vh;
             min-height: 100vh;
@@ -26,7 +29,11 @@
             position: absolute;
             top: 0;
             bottom: 0;
-            width: calc(50vw - 50vh)
+            width: calc(50vw - 50vh);
+            font-size: 22px;
+        }
+        .left select, .right select {
+            font-size: 22px;
         }
         .left {
             left: 0;
@@ -50,6 +57,12 @@
         }
 
         .nn {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            pointer-events: none;
             display: flex;
             flex-direction: row;
             justify-content: flex-end;
@@ -105,10 +118,11 @@
         <canvas></canvas>
     </div>
     <div class="left">
+        <label for="p1">Player 1:</label>
         <select id="p1">
-            <option value="chaser">Chaser</option>
-            <option value="nn">Neural network</option>
-            <option value="human">Human (Controls: W/S)</option>
+            <option value="chaser">追球</option>
+            <option value="nn">神經網路</option>
+            <option value="human">手動 (控制鍵： W/S)</option>
         </select>
         <select id="id1"></select>
              
@@ -116,10 +130,11 @@
         </div>
     </div>
     <div class="right">
+        <label for="p2">Player 2:</label>
         <select id="p2">
-            <option value="chaser">Chaser</option>
-            <option value="nn">Neural network</option>
-            <option value="human">Human (Controls: ↑/↓)</option>
+            <option value="chaser">追球</option>
+            <option value="nn">神經網路</option>
+            <option value="human">手動 (控制鍵： ↑/↓)</option>
         </select>
         <select id="id2"></select>
         
